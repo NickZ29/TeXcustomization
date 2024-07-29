@@ -8,6 +8,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{iftex}
 \RequirePackage{pgffor}
+\RequirePackage{graphicx}
 
 
 
@@ -20,16 +21,10 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 
-\def\exclam{!}
 
 
+\def\rainbowspace{=}
 
-\renewcommand\qedsymbol{\fbox{\begin{minipage}{.07\textwidth}
-    so \break
-    true \break
-    bestie
-\end{minipage}
-}}
 
 
 \newcounter{rainbowcolor}
@@ -37,26 +32,26 @@
 
 \newcommand{\rainbow}[1]{%
     \@tfor\x:=#1\do{%
-        \ifx\x\exclam%
+        \ifx\x\rainbowspace%
             \text{}
         \else%
         \ifnum\therainbowcolor=0%
-            \color{red}{\x}%
+            \textcolor{red}{\x}%
         \fi%
         \ifnum\therainbowcolor=1%
-            \color{orange}{\x}%
+            \textcolor{orange}{\x}%
         \fi%
         \ifnum\therainbowcolor=2%
-            \color{yellow}{\x}%
+            \textcolor{yellow}{\x}%
         \fi%
         \ifnum\therainbowcolor=3%
-            \color{green}{\x}%
+            \textcolor{green}{\x}%
         \fi%
         \ifnum\therainbowcolor=4%
-            \color{blue}{\x}%
+            \textcolor{blue}{\x}%
         \fi%
         \ifnum\therainbowcolor=5%
-            \color{violet}{\x}%
+            \textcolor{violet}{\x}%
         \fi%
         \stepcounter{rainbowcolor}%
         \ifnum\therainbowcolor=6%
@@ -64,6 +59,7 @@
         \fi%
         \fi%
     } %
+    \setcounter{rainbowcolor}{0}%
 }
 
 
@@ -73,6 +69,44 @@
 \def \TT {\mathbb{T}}
 \def \ZZ {\mathbb{Z}}
 \def \FF {\mathbf{F}}
+\def \la {\left\langle }
+\def \ra {\right\rangle}
+\def \lb {\left\{ }
+\def \rb {\right\} }
+\newcommand{\todo}[2][TODO]{\hl{(#1: #2)}}
 \newcommand{\exer}[1]{\underline{\textbf{Exercise #1:}}}
-\newcommand{\nwz}[1]{\marginpar{{\scriptsize \bf {\color{magenta}{(Nick)~#1}}}}}
+\newcommand{\nwz}[1]{\marginpar{{\scriptsize \bf {\textcolor{magenta}{(Nick)~#1}}}}}
+\definecolor{punk}{rgb}{0.870, .678, 0.8}
+\newcommand{\erc}[2][:)]{\marginpar{\colorbox{punk}{\parbox{1.25in}{\scriptsize (ER)~#2 #1}}}}
+\newcommand{\bal}[1]{{\scriptsize \bf {\textcolor{blue}{(Ben)~#1}}}}
 
+
+
+\DeclareOption{bestie}{
+    \renewcommand\qedsymbol{\fbox{\begin{minipage}{.07\textwidth}
+    so \break
+    true \break
+    bestie
+    \end{minipage}
+}}}
+\DeclareOption{bazinga}{
+    \renewcommand{\qedsymbol}{\rainbow{BAZINGA!}\includegraphics[height=.5cm]{<image path>}}
+    \newcommand{\bazinga}{"I've never been a fan of Internet Explorer" Crowd laughs nervously and a few grunts are heard from the back 
+    seats as people edge closer to hear the punchline. "Why not? Don't you like the internet?" The crowd suddenly stands up, aware that 
+    they are about to receive what they came for. People slowly edge closer to the set as Sheldon prepares for his next line. Sweat is 
+    clearly visible on his brow and his mouth is quivering in anticipation as he readies himself for what is about to happen. "I just 
+    prefer Firefox because, like the fox, I am cunning and nimble." The crowd suddenly surges forward as the words escape Sheldon's mouth. 
+    They are so powerful, they almost shake the very foundations of the CBS studios. He watches as, in what he perceives as slow motion, 
+    the crowd moves toward his fragile body. He has been preparing for this moment his whole life. This is his moment. This is his Emmy. 
+    is his Golden Globe. This is even his Oscar. The crowd converges around him so quickly they ignore the trampled cries of Leonard and 
+    Penny, who now lie shaking on the floor, their bones crushed by the sheer mass of the crowd. Sheldon stares back at the eyes around 
+    him. What he sees are no longer people. What he sees is the human psyche stripped down to its core. Their lives, what they were before 
+    this moment has been forgotten. Ravenous. Hungry. They want one thing from him. Sheldon closes his eyes, clears his mind and relaxes 
+    his body. What happens next depends completely on the next few seconds. The time between this and what he mutters next feels like an 
+    eternity. Slowly, he opens his eyes. He looks at Leonard, then at Penny, both lying lifeless on the floor. Without a second thought, 
+    he says with resounding conviction... "BAZINGA" In a split second, the crowd pounces on his ready and waiting body. Man, woman, child 
+    all at once. Sheldon cries out in complete ecstasy as they consume his flesh. He stops suddenly, as he drifts into eternal slumber. 
+    Peace at last.}
+}
+\DeclareOption*{\PackageWarning{mycommands}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
