@@ -30,6 +30,12 @@
 \newcounter{rainbowcolor}
 
 
+% -----------------------------------------------------------------------------------------
+% the \rainbow command takes in text and ouputs the text in a rainbow coloring path. Output 
+% will remove any whitespace contained in argument. A space can be added in the output 
+% using the \rainbowspace character. Unexpected results may occur when any non-standard 
+% character is passed as argument.
+% -----------------------------------------------------------------------------------------
 \newcommand{\rainbow}[1]{%
     \@tfor\x:=#1\do{%
         \ifx\x\rainbowspace%
