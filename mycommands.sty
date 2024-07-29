@@ -1,0 +1,78 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mycommands}[2024/07/25 Nick's package]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{color}
+\RequirePackage{xcolor}
+\RequirePackage{iftex}
+\RequirePackage{pgffor}
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\def\exclam{!}
+
+
+
+\renewcommand\qedsymbol{\fbox{\begin{minipage}{.07\textwidth}
+    so \break
+    true \break
+    bestie
+\end{minipage}
+}}
+
+
+\newcounter{rainbowcolor}
+
+
+\newcommand{\rainbow}[1]{%
+    \@tfor\x:=#1\do{%
+        \ifx\x\exclam%
+            \text{}
+        \else%
+        \ifnum\therainbowcolor=0%
+            \color{red}{\x}%
+        \fi%
+        \ifnum\therainbowcolor=1%
+            \color{orange}{\x}%
+        \fi%
+        \ifnum\therainbowcolor=2%
+            \color{yellow}{\x}%
+        \fi%
+        \ifnum\therainbowcolor=3%
+            \color{green}{\x}%
+        \fi%
+        \ifnum\therainbowcolor=4%
+            \color{blue}{\x}%
+        \fi%
+        \ifnum\therainbowcolor=5%
+            \color{violet}{\x}%
+        \fi%
+        \stepcounter{rainbowcolor}%
+        \ifnum\therainbowcolor=6%
+        \setcounter{rainbowcolor}{0}%
+        \fi%
+        \fi%
+    } %
+}
+
+
+\def \NN {\mathbb{N}}
+\def \RR {\mathbb{R}}
+\def \CC {\mathbb{C}}
+\def \TT {\mathbb{T}}
+\def \ZZ {\mathbb{Z}}
+\def \FF {\mathbf{F}}
+\newcommand{\exer}[1]{\underline{\textbf{Exercise #1:}}}
+\newcommand{\nwz}[1]{\marginpar{{\scriptsize \bf {\color{magenta}{(Nick)~#1}}}}}
+
