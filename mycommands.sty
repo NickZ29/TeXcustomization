@@ -9,6 +9,7 @@
 \RequirePackage{iftex}
 \RequirePackage{pgffor}
 \RequirePackage{graphicx}
+\RequirePackage{xparse}
 
 
 
@@ -29,15 +30,14 @@
 
 \newcounter{rainbowcolor}
 
-
 % -----------------------------------------------------------------------------------------
 % the \rainbow command takes in text and ouputs the text in a rainbow coloring path. Output 
 % will remove any whitespace contained in argument. A space can be added in the output 
 % using the \rainbowspace character. Unexpected results may occur when any non-standard 
 % character is passed as argument.
 % -----------------------------------------------------------------------------------------
-\newcommand{\rainbow}[1]{%
-    \@tfor\x:=#1\do{%
+\NewDocumentCommand{\rainbow}{ s m }{%
+    \@tfor\x:=#2\do{%
         \ifx\x\rainbowspace%
             \text{}
         \else%
@@ -64,8 +64,8 @@
         \setcounter{rainbowcolor}{0}%
         \fi%
         \fi%
-    } %
-    \setcounter{rainbowcolor}{0}%
+    }%
+    \IfBooleanF#1{\setcounter{rainbowcolor}{0}}%
 }
 
 
@@ -79,7 +79,6 @@
 \def \ra {\right\rangle}
 \def \lb {\left\{ }
 \def \rb {\right\} }
-\newcommand{\todo}[2][TODO]{\hl{(#1: #2)}}
 \newcommand{\exer}[1]{\underline{\textbf{Exercise #1:}}}
 \newcommand{\nwz}[1]{\marginpar{{\scriptsize \bf {\textcolor{magenta}{(Nick)~#1}}}}}
 \definecolor{punk}{rgb}{0.870, .678, 0.8}
@@ -97,7 +96,7 @@
 }}}
 \DeclareOption{bazinga}{
     \renewcommand{\qedsymbol}{\rainbow{BAZINGA!}\includegraphics[height=.5cm]{<image path>}}
-    \newcommand{\bazinga}{"I've never been a fan of Internet Explorer" Crowd laughs nervously and a few grunts are heard from the back 
+    \def \bazinga {"I've never been a fan of Internet Explorer" Crowd laughs nervously and a few grunts are heard from the back 
     seats as people edge closer to hear the punchline. "Why not? Don't you like the internet?" The crowd suddenly stands up, aware that 
     they are about to receive what they came for. People slowly edge closer to the set as Sheldon prepares for his next line. Sweat is 
     clearly visible on his brow and his mouth is quivering in anticipation as he readies himself for what is about to happen. "I just 
@@ -116,3 +115,4 @@
 }
 \DeclareOption*{\PackageWarning{mycommands}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
+
