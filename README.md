@@ -7,7 +7,8 @@ One may then implement the code into their LaTeX code with the following formatt
 
 \documentclass{article}
 
-\input{<directory>/mypreamble.tex}
+\input{.../mypreamble.tex}
+
 \usepackage{mycommands}
 
 % any additional packages or commands
