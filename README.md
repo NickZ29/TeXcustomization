@@ -1,5 +1,5 @@
 # TeXcustomization
-Contains customized packages and preambles for .tex files. "mycommands.sty" includes custom commands such as rainbow text :O There are two ways you can use the custom package in your document. The first is to have the .sty file in your current working directory. This is method should be used when working in Overleaf. 
+Contains customized packages and preambles for .tex files. "mycommands.sty" includes custom commands such as rainbow text :O. There are two ways you can use the custom package in your document. The first is to have the .sty file in your current working directory. This is method should be used when working in Overleaf. 
 
 Alternatively, if using TeXlive (and the default directory tree setup), you may have the .sty in the ".../texlive/texmf-local/tex/latex" directory and any suitable subdirectories. After adding the .sty file to this directory for the first time, run "texhash" into the command line to update the TeXlive tree search.
 
